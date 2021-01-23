@@ -1,0 +1,60 @@
+// PAD1 - Praktikum 3
+// Aufgabe 10
+// 762199
+
+#include <iostream>
+#include <string>
+#include <ctype.h>
+using namespace std;
+
+// Funktion zum Checken des Palindroms
+
+bool Palindrome(string s)
+{
+  int i,j; // i= Start des strings; j= Ende des Strings
+  i=0;
+  j=s.length()-1; // ist der letzte Char im String
+
+
+  while(i<j)
+  {
+      // Entfernt Leerzeichen und Sonderzeichen
+      // isalnum = Kontrolliert ob Nummer oder Buchstaben
+    while(i<j && isalnum(s[i])==0)
+      i++; // erhöht solange, bis "i" ein Buchstabe ist
+    while(i<j && isalnum(s[j])==0)
+      j--; // verringert solange bis "j" ein Buchstabe ist
+
+
+
+
+   if(toupper(s[i])!=toupper(s[j])) // Jeder Char wird in Kleinbuchstaben umgewandelt
+    {
+     return false; // Nicht gleich = false
+    }
+   else
+   {
+    i++; // Durchläuft von links nach rechts
+    j--; // Durchläuft von rechts nach links
+   }
+
+  }
+  return true;
+}
+
+
+int main()
+{
+
+  string s;
+  getline(cin,s); // Um einen String mit Leerzeichen einlesen zu können
+
+  int ans=Palindrome(s);
+
+  if(ans==1)
+   cout<< "Ja, es ist ein Palindrom." << endl;
+  else
+   cout<< "Nein, es ist kein Palindrom." << endl;
+
+ return 0;
+}
